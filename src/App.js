@@ -1,23 +1,23 @@
-import logo from './logo.svg';
+import React, { useState, useEffect, useRef } from 'react';
+import Home from './components/Home';
 import './App.css';
+import TwoDMap from './components/TwoDMap';
+import ThreeDMap from './components/ThreeDMap';
 
 function App() {
+  const [ myScreen, setMyScreen ] = useState('home')
+
+  const handleScreenChange = (newScreen) => {
+    setMyScreen(newScreen)
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+       {myScreen == 'home' ? <Home changeScreen={handleScreenChange} /> :
+          myScreen == '2Dmap' ? <TwoDMap /> :
+            myScreen == '3Dmap' ? <ThreeDMap /> :
+           null 
+          }
     </div>
   );
 }
